@@ -1,0 +1,12 @@
+{
+  "name": "tiy",
+  "version": "1.0.0",
+  "description": "A simple way to everyone be part of product's quality",
+  "main": "http-server",
+  "scripts": {
+    "start": "http-server",
+    "test": ""  
+  },
+  "author": "Lucas Inocente",
+  "license": "ISC"
+}
