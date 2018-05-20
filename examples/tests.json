@@ -5,21 +5,29 @@
             "steps": [
                 {
                     "action": "click",
-                    "elementId": "clean"
+                    "element": "clean",
+                    "type": "id"
                 },
                 {
                     "action": "read",
-                    "elementId": "text",
+                    "element": "text",
+                    "type": "id",
                     "expect": "Limpo"
                 }
             ]
-        },
+        },  
         {
             "name": "Teste de leitura da página de exemplo",
             "steps": [
                 {
+                    "action": "click",
+                    "element": "clean",
+                    "type": "class"
+                },
+                {
                     "action": "read",
-                    "elementId": "fixo",
+                    "element": "fixo",
+                    "type": "class",
                     "expect": "Limpo"
                 }
             ]

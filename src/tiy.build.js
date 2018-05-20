@@ -1,25 +1,35 @@
-function click(id) {
-    log(`[Click] [#${id}]`);
-    const el = document.getElementById(id);
+function click(step) {
+
+    log(`[Click] [${step.type}] [${step.element}]`);
+    
+    const el = findElement(step);
+
     if (el) {
         log(`[Click] ${el.outerHTML}`);
         el.click();
         log(true);
-    } else {
-        log(`[Click] [#${id} not found]`);
-        log(false);
     }
+    
 }
 
-function read(id, text) {
-    log(`[Read] [#${id}]`);
-    const el = document.getElementById(id);
-    log(`[Read] [${el.outerHTML}] [Expect] [${text}]`);
-    if (el.innerText == text) {
+function read(step) {
+
+    log(`[Read] [${step.type}] [${step.element}]`);
+    
+    const el = findElement(step);
+
+    if (!el) {
+        return;
+    }
+
+    log(`[Read] [${el.outerHTML}] [Expect] [${step.expect}]`);
+
+    if (el.innerText == step.expect) {
         log(true);
     } else {
         log(false);
     }
+
 }
 
 function log(log) {
@@ -30,6 +40,7 @@ function log(log) {
 }
 
 function runTests(json) {
+    
     fetch(json)
     .then(response => response.json())
     .then((json) => {
@@ -43,10 +54,12 @@ function runTests(json) {
         });
 
     });
+    
 }
 
 function runStep(test) {
-    console.log(`[Starting] ${test.name} - ${test.steps}`)
+
+    log(`[Starting] ${test.name}`)
     let steps = test.steps;
     
     steps.forEach(function(step, index) {
@@ -58,19 +71,43 @@ function runStep(test) {
 
 }
 
-function step(step) {
+function findElement(step) {
 
-    console.log('step', step)
+    let elementId, elementClass;
+
+    switch(step.type) {
+        case 'id':
+            elementId = document.getElementById(step.element);
+            break;
+        case 'class':
+            elementClass = document.getElementsByClassName(step.element)[0];
+            break;
+        default:
+            log(`Element ${step.type} not supported by API`);
+            break;
+    }
+
+    if (elementId || elementClass) {
+        return elementId || elementClass;
+    } else {
+        log(`[${step.type}] [${step.element}] [Not found]`);
+        log(false);
+        return undefined;
+    }
+
+}
+
+function step(step) {
 
     switch(step.action) {
         case 'click':
-            click(step.elementId);
+            click(step);
             break;
         case 'read':
-            read(step.elementId, step.expect);
+            read(step);
             break;
         default:
-            console.log('Action not supported by API')
+            log('Action not supported by API')
             break;
     }
 
