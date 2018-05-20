@@ -1,0 +1,28 @@
+{
+    "tests": [
+        {
+            "name": "Teste de click da página de exemplo",
+            "steps": [
+                {
+                    "action": "click",
+                    "elementId": "clean"
+                },
+                {
+                    "action": "read",
+                    "elementId": "text",
+                    "expect": "Limpo"
+                }
+            ]
+        },
+        {
+            "name": "Teste de leitura da página de exemplo",
+            "steps": [
+                {
+                    "action": "read",
+                    "elementId": "fixo",
+                    "expect": "Limpo"
+                }
+            ]
+        }
+    ]
+}

@@ -28,3 +28,50 @@ function log(log) {
     result.innerText += log;
     console.log(log)
 }
+
+function runTests(json) {
+    fetch(json)
+    .then(response => response.json())
+    .then((json) => {
+        
+        const tests = json.tests;
+
+        tests.forEach(function(test, index) {
+            setTimeout(function(){ 
+                runStep(test); 
+            }, index * 3000);
+        });
+
+    });
+}
+
+function runStep(test) {
+    console.log(`[Starting] ${test.name} - ${test.steps}`)
+    let steps = test.steps;
+    
+    steps.forEach(function(step, index) {
+        self = this;
+        setTimeout(function(){ 
+            self.step(step);
+        }, (index + 1) * 500);
+    });
+
+}
+
+function step(step) {
+
+    console.log('step', step)
+
+    switch(step.action) {
+        case 'click':
+            click(step.elementId);
+            break;
+        case 'read':
+            read(step.elementId, step.expect);
+            break;
+        default:
+            console.log('Action not supported by API')
+            break;
+    }
+
+}

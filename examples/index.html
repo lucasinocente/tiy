@@ -23,13 +23,7 @@
         }
 
         function test() {
-            click('clean');
-            setTimeout(
-                read('text','Limpo'), 
-            1000);
-            setTimeout(
-                read('fixo','Texto fixado'), 
-            2000);
+            runTests('tests.json');
         }
     
     </script>
