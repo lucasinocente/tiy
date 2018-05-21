@@ -5,17 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Olá, mundo!</title>
     <script src="../src/tiy.build.js"></script>
+    <link rel="stylesheet" href="../src/tiy.build.css"></style>
   </head>
   <body>
+
     <h1>Olá, mundo!</h1>
     <button id="clean" onclick="cleanText()">Limpar</button>
-    <div id="text">Não importa o que esteja aqui, deve ser limpado pela função showResult() ao ser clicado no botão Limpar;</div>
+    <div id="text">Não importa o que esteja aqui, deve ser limpado pela função cleanText() ao ser clicado no botão Limpar;</div>
     <div id="fixo">Texto fixo</div>
 
     <hr>
-    <button id="test" onclick="test()">Testar</button>
-    <div id="result"></div>
 
+    <div class="tiy-navbar">
+        <div class="tiy-content">
+            <button id="test" onclick="test()">Testar</button>
+            <div id="result"></div> 
+        </div>
+    </div>
+    
     <script>
 
         function cleanText() {

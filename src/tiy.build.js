@@ -34,8 +34,7 @@ function read(step) {
 
 function log(log) {
     var result = document.getElementById('result');
-    result.innerHTML += '<br>' 
-    result.innerText += log;
+    result.innerText = log;
     console.log(log)
 }
 
